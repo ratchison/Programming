@@ -1,31 +1,61 @@
+
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Scanner;
 
 public class PlayerManager {
-
+	
 	/**
 	 * @param args
 	 */
-	public void main(String[] args) { }
+	
+	ArrayList<NFLplayer> players = new ArrayList<NFLplayer>();
+	
+	
+	
+	
+
+	// Read player data from file. 
+	String filename = "PlayerData.csv";
+	File file = new File(filename);{
+	try {
+		Scanner inputStream = new Scanner (file);
+		while (inputStream.hasNextLine()){
+			String data = inputStream.next();
+			String[] players = data.split(",");
+			System.out.println(data);
+		}
+		inputStream.close();
+	} catch (FileNotFoundException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+}
+	
+	
+	
+
+	public void CreatePlayers(String[] args) { }
 	
 		// TODO use an ArrayList to manage and create players
-		
-		//data fields
-		private String NFLplayer;
-		private ArrayList<String> players;
-
-		// Constructor
+	
+				// Constructor
 		/** Create a Player object */
 		public PlayerManager(String NFLplayer) {
-			this.NFLplayer = NFLplayer;
-			players = new ArrayList<String>();
 		}
+		
 
 		// Methods
 		/** Add a Player to the list */
-		public void loadPlayers(String player) {
-			players.add(player);
+		public void loadPlayers(Collection<? extends NFLplayer> player) {
+			players.addAll(player);
 		}
 
 		/** Return Players in an array */
@@ -35,19 +65,29 @@ public class PlayerManager {
 		}
 
 		/** Return number of players */
-		public int getNumberOfPlayers() {
+		public int getAvailable() {
 			return players.size();
 		}
 
-		/** Return NFLPlayer name */
-		public String getPlayerName() {
-			return NFLplayer;
+		/** Return NFLPlayer name 
+		 * @param fullName */
+		public String getPlayerName(String fullName) {
+			return fullName;
 		}
 
 		/** Drop a Player */
 		public void dropPlayer(String player) {
 			players.remove(player);
 		}
-}
+		
+		
+
+
+		
+		}
+
+		
+
+
 	
 		
